@@ -8,8 +8,9 @@
 #include "spider.h"
 
 GLint   WINDOW_WIDTH  = 1120,
-        WINDOW_HEIGHT = 630,
-        FRAME_MS = 1000/60;
+        WINDOW_HEIGHT = 630;
+
+GLfloat FRAME_MS = 1000/60;
 
 GLint   screen_width,
         screen_height;
@@ -102,7 +103,7 @@ void keybord_special_keypress(GLint key, GLint x, GLint y){
 
 void update(GLint param){
     //update spider here (move/animate)
-    //spider->update(FRAME_MS)
+    spider->update(FRAME_MS);
 
     glutTimerFunc(FRAME_MS, update, 0);
     glutPostRedisplay();

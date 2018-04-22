@@ -1,2 +1,2 @@
 # OpenGL_Spider
-Trabalho Prático 1 de Computação Gráfica
+Primeira Etapa do Projeto de Computação Gráfica.

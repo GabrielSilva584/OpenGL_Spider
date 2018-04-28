@@ -26,7 +26,7 @@
 #define INT_KNEE_ANGLE -45
 #define EXT_KNEE_ANGLE -40
 
-#define SPIDER_STEP_TIME 1000
+#define SPIDER_ANIMATION_TIME 1000
 
 class Spider : public DrawableObject{
     private:
@@ -37,6 +37,7 @@ class Spider : public DrawableObject{
         Leg int_leg_r2, int_leg_l2;
         Leg int_leg_r3, int_leg_l3;
         GLfloat animationTime;
+        GLboolean isAnimated;
 
     public:
         Spider();

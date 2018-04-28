@@ -48,6 +48,7 @@ Spider::Spider(Point pos){
     int_leg_r3 = Leg(tmp2, INT_LEG_ANGLE3, INT_KNEE_ANGLE, INT_LEG3_SIZE1, INT_LEG3_SIZE2, false, false);
 
     animationTime = 0;
+    isAnimated = true;
 }
 
 void Spider::walkTo(Point destiny){
@@ -60,22 +61,18 @@ void Spider::update(GLfloat delta_temp){
         //update legs
     }
 
-    if(animationTime>2*SPIDER_STEP_TIME)
-        animationTime = 0;
-
-    if(animationTime<=SPIDER_STEP_TIME){
+    if(isAnimated){
         ext_leg_r.update(delta_temp);
         int_leg_l1.update(delta_temp);
         int_leg_r2.update(delta_temp);
         int_leg_l3.update(delta_temp);
-    }else{
         ext_leg_l.update(delta_temp);
         int_leg_r1.update(delta_temp);
         int_leg_l2.update(delta_temp);
         int_leg_r3.update(delta_temp);
+        animationTime += delta_temp;
     }
-
-    animationTime += delta_temp;
+    
     
     
     

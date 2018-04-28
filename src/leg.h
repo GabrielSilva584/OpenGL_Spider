@@ -5,12 +5,11 @@
 #include "point.h"
 
 #define ANIMATION_LOOP_TIME 1000
-#define ANIMATION_DEGREE_SPEED 0.05
 
 class Leg{
     private:
         Point a, b, c;
-        GLfloat angleA, angleB, sizeA, sizeB, animationTime;
+        GLfloat angleA, angleA0, angleB, angleB0, sizeA, sizeB, animationTime, initialSizeArmOne, initialSizeArmTwo;
         GLboolean leftLeg, invertAnim;
 
     public:

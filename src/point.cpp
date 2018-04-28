@@ -5,6 +5,7 @@
 
 #include "point.h"
 
+
 Point::Point() : X(0), Y(0){}
 
 Point::Point(GLfloat x, GLfloat y) : X(x), Y(y){}
@@ -14,14 +15,14 @@ void Point::translate(GLfloat delX, GLfloat delY){
     Y += delY;
 }
 
-void Point::rotate(Point O, GLfloat rad){
+void Point::rotate(Point O, GLfloat deg){
     this->translate(-O.getX(), -O.getY());
 
     GLfloat Xold = X;
     GLfloat Yold = Y;
 
-    X = Xold*cos(rad) + Yold*sin(rad);
-    Y = - Xold*sin(rad) + Yold*cos(rad);
+    X = Xold*cos(PI*deg/180) + Yold*sin(PI*deg/180);
+    Y = - Xold*sin(PI*deg/180) + Yold*cos(PI*deg/180);
 
     this->translate(O.getX(),O.getY());
 }

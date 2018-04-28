@@ -21,15 +21,14 @@ void Circle::define(Point c, GLfloat rx, GLfloat ry){
 
     pontos.push_back(c);
 
-    GLfloat angle = atan(1)/10; // pi/40
-    GLfloat pi = atan(1)*4; // pi
+    GLfloat angle = PI/40; // pi/40
 
     pontos.clear();
 
     Point a;
 
     GLfloat i = 0;
-    while(i <= 2*pi){
+    while(i <= 2*PI){
         a = c;
         a.translate(rx*cos(i), ry*sin(i));
         pontos.push_back(a);

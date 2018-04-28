@@ -85,7 +85,7 @@ void mouse_click(GLint button, GLint action, GLint x, GLint y){
 void keybord_keypress(GLubyte key, GLint x, GLint y){
     GLint m = glutGetModifiers();
 
-    //VERIFICAR TABELA ASCII QUANDO O CTRL ESTIVER PRECIONADO COM ALGUMA LETRA
+    //FECHA A JANELA AO APERTAR CTRL+D
     if(m == GLUT_ACTIVE_CTRL && (GLint) key == 4)
         exit(EXIT_SUCCESS);
 

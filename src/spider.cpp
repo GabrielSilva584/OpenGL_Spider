@@ -16,36 +16,38 @@ Spider::Spider(Point pos){
     tmp = Point(pos.getX() + BODY_SIZE1, pos.getY());
 
     tmp2 = tmp;
-    tmp2.rotate(pos, (180-EXT_LEG_ANGLE)*2*PI/360);
+    tmp2.rotate(pos, 180-EXT_LEG_ANGLE);
     ext_leg_l = Leg(tmp2, EXT_LEG_ANGLE, EXT_KNEE_ANGLE, EXT_LEG_SIZE1, EXT_LEG_SIZE2, true, false);
 
     tmp2 = tmp;
-    tmp2.rotate(pos, EXT_LEG_ANGLE*2*PI/360);
-    ext_leg_r = Leg(tmp2, EXT_LEG_ANGLE, EXT_KNEE_ANGLE, EXT_LEG_SIZE1, EXT_LEG_SIZE2, false, false);
+    tmp2.rotate(pos, EXT_LEG_ANGLE);
+    ext_leg_r = Leg(tmp2, EXT_LEG_ANGLE, EXT_KNEE_ANGLE, EXT_LEG_SIZE1, EXT_LEG_SIZE2, false, true);
 
     tmp2 = tmp;
-    tmp2.rotate(pos, (180-INT_LEG_ANGLE1)*2*PI/360);
-    int_leg_l1 = Leg(tmp2, INT_LEG_ANGLE1, INT_KNEE_ANGLE, INT_LEG_SIZE1, INT_LEG_SIZE2, true, false);
+    tmp2.rotate(pos, 180-INT_LEG_ANGLE1);
+    int_leg_l1 = Leg(tmp2, INT_LEG_ANGLE1, INT_KNEE_ANGLE, INT_LEG1_SIZE1, INT_LEG1_SIZE2, true, true);
 
     tmp2 = tmp;
-    tmp2.rotate(pos, INT_LEG_ANGLE1*2*PI/360);
-    int_leg_r1 = Leg(tmp2, INT_LEG_ANGLE1, INT_KNEE_ANGLE, INT_LEG_SIZE1, INT_LEG_SIZE2, false, false);
+    tmp2.rotate(pos, INT_LEG_ANGLE1);
+    int_leg_r1 = Leg(tmp2, INT_LEG_ANGLE1, INT_KNEE_ANGLE, INT_LEG1_SIZE1, INT_LEG1_SIZE2, false, false);
 
     tmp2 = tmp;
-    tmp2.rotate(pos, (180-INT_LEG_ANGLE2)*2*PI/360);
-    int_leg_l2 = Leg(tmp2, INT_LEG_ANGLE2, INT_KNEE_ANGLE, INT_LEG_SIZE1, INT_LEG_SIZE2, true, false);
+    tmp2.rotate(pos, 180-INT_LEG_ANGLE2);
+    int_leg_l2 = Leg(tmp2, INT_LEG_ANGLE2, INT_KNEE_ANGLE, INT_LEG2_SIZE1, INT_LEG2_SIZE2, true, false);
 
     tmp2 = tmp;
-    tmp2.rotate(pos, INT_LEG_ANGLE2*2*PI/360);
-    int_leg_r2 = Leg(tmp2, INT_LEG_ANGLE2, INT_KNEE_ANGLE, INT_LEG_SIZE1, INT_LEG_SIZE2, false, false);
+    tmp2.rotate(pos, INT_LEG_ANGLE2);
+    int_leg_r2 = Leg(tmp2, INT_LEG_ANGLE2, INT_KNEE_ANGLE, INT_LEG2_SIZE1, INT_LEG2_SIZE2, false, true);
 
     tmp2 = tmp;
-    tmp2.rotate(pos, (180-INT_LEG_ANGLE3)*2*PI/360);
-    int_leg_l3 = Leg(tmp2, INT_LEG_ANGLE3, INT_KNEE_ANGLE, INT_LEG_SIZE1, INT_LEG_SIZE2, true, false);
+    tmp2.rotate(pos, 180-INT_LEG_ANGLE3);
+    int_leg_l3 = Leg(tmp2, INT_LEG_ANGLE3, INT_KNEE_ANGLE, INT_LEG3_SIZE1, INT_LEG3_SIZE2, true, true);
 
     tmp2 = tmp;
-    tmp2.rotate(pos, INT_LEG_ANGLE3*2*PI/360);
-    int_leg_r3 = Leg(tmp2, INT_LEG_ANGLE3, INT_KNEE_ANGLE, INT_LEG_SIZE1, INT_LEG_SIZE2, false, false);
+    tmp2.rotate(pos, INT_LEG_ANGLE3);
+    int_leg_r3 = Leg(tmp2, INT_LEG_ANGLE3, INT_KNEE_ANGLE, INT_LEG3_SIZE1, INT_LEG3_SIZE2, false, false);
+
+    animationTime = 0;
 }
 
 void Spider::walkTo(Point destiny){
@@ -57,6 +59,26 @@ void Spider::update(GLfloat delta_temp){
         //walk
         //update legs
     }
+
+    if(animationTime>2*SPIDER_STEP_TIME)
+        animationTime = 0;
+
+    if(animationTime<=SPIDER_STEP_TIME){
+        ext_leg_r.update(delta_temp);
+        int_leg_l1.update(delta_temp);
+        int_leg_r2.update(delta_temp);
+        int_leg_l3.update(delta_temp);
+    }else{
+        ext_leg_l.update(delta_temp);
+        int_leg_r1.update(delta_temp);
+        int_leg_l2.update(delta_temp);
+        int_leg_r3.update(delta_temp);
+    }
+
+    animationTime += delta_temp;
+    
+    
+    
 }
 
 void Spider::draw(){

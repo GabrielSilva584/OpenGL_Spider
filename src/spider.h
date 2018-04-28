@@ -13,14 +13,20 @@
 #define BODY_SIZE2 15
 #define EXT_LEG_SIZE1 75
 #define EXT_LEG_SIZE2 50
-#define INT_LEG_SIZE1 50
-#define INT_LEG_SIZE2 75
+#define INT_LEG1_SIZE1 40
+#define INT_LEG1_SIZE2 55
+#define INT_LEG2_SIZE1 40
+#define INT_LEG2_SIZE2 55
+#define INT_LEG3_SIZE1 50
+#define INT_LEG3_SIZE2 75
 #define EXT_LEG_ANGLE 70
-#define INT_LEG_ANGLE1 30
-#define INT_LEG_ANGLE2 10
-#define INT_LEG_ANGLE3 -10
-#define INT_KNEE_ANGLE -80
+#define INT_LEG_ANGLE1 40
+#define INT_LEG_ANGLE2 0
+#define INT_LEG_ANGLE3 -40
+#define INT_KNEE_ANGLE -45
 #define EXT_KNEE_ANGLE -40
+
+#define SPIDER_STEP_TIME 1000
 
 class Spider : public DrawableObject{
     private:
@@ -30,6 +36,7 @@ class Spider : public DrawableObject{
         Leg int_leg_r1, int_leg_l1;
         Leg int_leg_r2, int_leg_l2;
         Leg int_leg_r3, int_leg_l3;
+        GLfloat animationTime;
 
     public:
         Spider();

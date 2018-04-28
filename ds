@@ -1,0 +1,29 @@
+[33mcommit 77ffa3351320a3a540b81dc4c024c0a5be116f3d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Gabriel Silva <gabriel@localhost.localdomain>
+Date:   Sun Apr 22 02:03:02 2018 -0300
+
+    Preparo da função update().
+
+[33mcommit 798670179818e22eb1818933fae8ec667c8cd5e4[m
+Author: Gabriel Silva <gabriel@localhost.localdomain>
+Date:   Sun Apr 22 01:59:00 2018 -0300
+
+    Atualização do README.md
+
+[33mcommit de72822f5af6c8a17fdb9477c774a608a3841d1b[m
+Author: Gabriel Silva <gabriel@localhost.localdomain>
+Date:   Sun Apr 22 01:58:38 2018 -0300
+
+    Adição do documento de descrição do projeto.
+
+[33mcommit 0c8697ed09a7d24b366094c17e2189e2cfa6a4eb[m
+Author: Gabriel Martins da Silva <gms.1997@hotmail.com>
+Date:   Sun Apr 22 01:47:00 2018 -0300
+
+    Basic Engine and Spider
+
+[33mcommit d105d5812f620596f5fadc11dd3355bb25a89aa3[m
+Author: Gabriel Martins da Silva <gms.1997@hotmail.com>
+Date:   Sun Apr 22 01:44:48 2018 -0300
+
+    Initial commit

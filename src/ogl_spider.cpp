@@ -76,9 +76,11 @@ void draw(){
 }
 
 void mouse_click(GLint button, GLint action, GLint x, GLint y){
-    if(button == GLUT_LEFT_BUTTON && action == GLUT_UP){
-        //Do the spider dance (set destiny)
-        spider->walkTo(Point(x,y));
+    if(button == GLUT_LEFT_BUTTON ){
+	if(action == GLUT_DOWN){
+		//Do the spider dance (set destiny)
+		spider->walkTo(Point(x,y));
+	}
     }
 }
 

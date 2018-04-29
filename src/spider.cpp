@@ -1,4 +1,5 @@
 #include "spider.h"
+#include<stdio.h>
 
 Spider::Spider(){}
 
@@ -6,7 +7,6 @@ Spider::Spider(Point pos){
     Point tmp, tmp2;
 
     this->pos = pos;
-    this->center = pos;
     this->destiny = pos;
 
     tmp = Point(pos.getX(), pos.getY() + BODY_SIZE1 + BODY_SIZE2);
@@ -58,33 +58,53 @@ void Spider::walkTo(Point destiny){
 void Spider::update(GLfloat delta_temp){
     if(pos.getX() != destiny.getX() || pos.getY() != destiny.getY()){
         //walk
+	GLfloat dx = destiny.getX() - pos.getX();
+	GLfloat dy = destiny.getY() - pos.getY();
+	GLfloat m = dy/dx;
+	if(abs(dx) >= abs(dy)){
+		if(dx >= 0){
+			pos.setX(pos.getX()+1);
+			pos.setY(pos.getY()+m);
+			this->translate(1, m);
+		}else{
+			pos.setX(pos.getX()-1);
+			pos.setY(pos.getY()-m);
+			this->translate(-1, -m);
+		}
+	}else{
+		if(dy >= 0){
+			pos.setX(pos.getX()+1/m);
+			pos.setY(pos.getY()+1);
+			this->translate(1/m, 1);
+		}else{
+			pos.setX(pos.getX()-1/m);
+			pos.setY(pos.getY()-1);
+			this->translate(-1/m,-1);
+		}
+	}
         //update legs
+	    if(isAnimated){
+		ext_leg_r.update(delta_temp);
+		int_leg_l1.update(delta_temp);
+		int_leg_r2.update(delta_temp);
+		int_leg_l3.update(delta_temp);
+		ext_leg_l.update(delta_temp);
+		int_leg_r1.update(delta_temp);
+		int_leg_l2.update(delta_temp);
+		int_leg_r3.update(delta_temp);
+		animationTime += delta_temp;
+	    }
     }
 
-    if(isAnimated){
-        ext_leg_r.update(delta_temp);
-        int_leg_l1.update(delta_temp);
-        int_leg_r2.update(delta_temp);
-        int_leg_l3.update(delta_temp);
-        ext_leg_l.update(delta_temp);
-        int_leg_r1.update(delta_temp);
-        int_leg_l2.update(delta_temp);
-        int_leg_r3.update(delta_temp);
-        animationTime += delta_temp;
-    }
-    
-    
-    
-    
 }
 
 void Spider::draw(){
     glPushMatrix();
 
-    glTranslated(center.getX(), center.getY(), 0);
+    glTranslated(pos.getX() + tx, pos.getY() + ty, 0);
     glRotated(rot, 0.0, 0.0, -1.0);
     glScaled(sx, sy, 1);
-    glTranslated(-center.getX() + tx, -center.getY() + ty, 0);
+    glTranslated(-pos.getX(), -pos.getY(), 0);
 
     body1.draw();
     body2.draw();

@@ -2,6 +2,7 @@
 #define SPIDER
 
 #include <GL/glut.h>
+#include <math.h>
 #include "point.h"
 #include "circle.h"
 #include "leg.h"

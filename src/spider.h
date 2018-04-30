@@ -2,7 +2,7 @@
 #define SPIDER
 
 #include <GL/glut.h>
-#include <math.h>
+#include <cmath>
 #include "point.h"
 #include "circle.h"
 #include "leg.h"
@@ -19,7 +19,7 @@
 #define INT_LEG2_SIZE1 40
 #define INT_LEG2_SIZE2 55
 #define INT_LEG3_SIZE1 50
-#define INT_LEG3_SIZE2 75
+#define INT_LEG3_SIZE2 60
 #define EXT_LEG_ANGLE 70
 #define INT_LEG_ANGLE1 40
 #define INT_LEG_ANGLE2 0
@@ -28,10 +28,12 @@
 #define EXT_KNEE_ANGLE -40
 
 #define SPIDER_ANIMATION_TIME 1000
+#define MOVEMENT_SPEED 3
+#define TURN_SPEED 3
 
 class Spider : public DrawableObject{
     private:
-        Point pos, center, destiny;
+        Point pos, destiny, direction;
         Circle body1, body2;
         Leg ext_leg_r, ext_leg_l;
         Leg int_leg_r1, int_leg_l1;

@@ -1,5 +1,5 @@
 #include "spider.h"
-#include<stdio.h>
+#include <stdio.h>
 
 Spider::Spider(){}
 
@@ -56,43 +56,49 @@ void Spider::walkTo(Point destiny){
 }
 
 void Spider::update(GLfloat delta_temp){
-    if(pos.getX() != destiny.getX() || pos.getY() != destiny.getY()){
-        //walk
-	GLfloat dx = destiny.getX() - pos.getX();
-	GLfloat dy = destiny.getY() - pos.getY();
-	GLfloat m = dy/dx;
-	if(abs(dx) >= abs(dy)){
-		if(dx >= 0){
-			pos.setX(pos.getX()+1);
-			pos.setY(pos.getY()+m);
-			this->translate(1, m);
-		}else{
-			pos.setX(pos.getX()-1);
-			pos.setY(pos.getY()-m);
-			this->translate(-1, -m);
-		}
-	}else{
-		if(dy >= 0){
-			pos.setX(pos.getX()+1/m);
-			pos.setY(pos.getY()+1);
-			this->translate(1/m, 1);
-		}else{
-			pos.setX(pos.getX()-1/m);
-			pos.setY(pos.getY()-1);
-			this->translate(-1/m,-1);
-		}
-	}
-        //update legs
-	    if(isAnimated){
-		ext_leg_r.update(delta_temp);
-		int_leg_l1.update(delta_temp);
-		int_leg_r2.update(delta_temp);
-		int_leg_l3.update(delta_temp);
-		ext_leg_l.update(delta_temp);
-		int_leg_r1.update(delta_temp);
-		int_leg_l2.update(delta_temp);
-		int_leg_r3.update(delta_temp);
-		animationTime += delta_temp;
+    if(GLint(pos.getX() + tx) != destiny.getX() || GLint(pos.getY() + ty) != destiny.getY()){
+        
+        //calculando valor unitário de direção
+        GLfloat dx = destiny.getX() - pos.getX() - tx;
+        GLfloat dy = destiny.getY() - pos.getY() - ty;
+        GLfloat h = sqrt( pow(dx,2) + pow(dy,2) );
+        direction = Point(dx/h, dy/h);
+        
+        //ângulo entre posição atual e destino
+        GLfloat angle = acos(dx/h)*180/PI;
+        if(dy > 0) angle = 360 - angle;
+        
+        GLint turn_dir = GLint(angle)%360 - GLint(rot + 90)%360;
+        
+        if(turn_dir != 0){ //virar
+            
+            //manter turn_dir entre -180 e 180
+            if(turn_dir > 180) turn_dir -= 360;
+            else if(turn_dir < -180) turn_dir += 360;
+            
+            //decidindo direção para virar
+            if(turn_dir >= TURN_SPEED) rotate(TURN_SPEED);
+            else if(turn_dir <= -TURN_SPEED) rotate(-TURN_SPEED);
+            else rotate(turn_dir);
+        
+        }else{ //andar
+            if(h < MOVEMENT_SPEED)
+                translate(h*direction.getX(), h*direction.getY());
+            else
+                translate(MOVEMENT_SPEED*direction.getX(), MOVEMENT_SPEED*direction.getY());
+        }
+            
+        //atualizar pernas
+        if(isAnimated){
+        ext_leg_r.update(delta_temp);
+        int_leg_l1.update(delta_temp);
+        int_leg_r2.update(delta_temp);
+        int_leg_l3.update(delta_temp);
+        ext_leg_l.update(delta_temp);
+        int_leg_r1.update(delta_temp);
+        int_leg_l2.update(delta_temp);
+        int_leg_r3.update(delta_temp);
+        animationTime += delta_temp;
 	    }
     }
 

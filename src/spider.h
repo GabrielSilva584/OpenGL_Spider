@@ -35,6 +35,7 @@ class Spider : public DrawableObject{
     private:
         Point pos, destiny, direction;
         Circle body1, body2;
+	Circle l_eye, r_eye;
         Leg ext_leg_r, ext_leg_l;
         Leg int_leg_r1, int_leg_l1;
         Leg int_leg_r2, int_leg_l2;

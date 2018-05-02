@@ -13,6 +13,13 @@ Spider::Spider(Point pos){
     body1 = Circle(pos, BODY_SIZE1);
     body2 = Circle(tmp, BODY_SIZE2);
 
+    glColor3f(0.0f, 0.0f, 0.0f);
+    tmp = Point(pos.getX() - 2*BODY_SIZE1/10, pos.getY() - 2*BODY_SIZE1/3);
+    l_eye = Circle(tmp, BODY_SIZE1/4);
+    tmp = Point(pos.getX() + 2*BODY_SIZE1/10, pos.getY() - 2*BODY_SIZE1/3);
+    r_eye = Circle(tmp, BODY_SIZE1/4);
+    glColor3f(1.0f, 1.0f, 1.0f);
+
     tmp = Point(pos.getX() + BODY_SIZE1, pos.getY());
 
     tmp2 = tmp;
@@ -114,6 +121,10 @@ void Spider::draw(){
 
     body1.draw();
     body2.draw();
+    glColor4f(0.0, 0.0, 0.0, 1.0);
+    l_eye.draw();
+    r_eye.draw();
+    glColor4f(1.0, 1.0, 1.0, 1.0);
     ext_leg_r.draw();
     ext_leg_l.draw();
     int_leg_r1.draw();
